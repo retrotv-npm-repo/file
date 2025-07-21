@@ -1,14 +1,45 @@
 {
-  "name": "file",
-  "version": "1.0.0",
-  "description": "",
+  "name": "@retrotv/file",
+  "version": "0.0.1-alpha",
+  "description": "파일 유틸리티 라이브러리",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
-  "dependencies": {},
+  "keywords": [
+    "retrotv",
+    "file",
+    "utilities",
+    "typescript",
+    "javascript",
+    "library"
+  ],
+  "author": "RetroTV <yjj8353@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/retrotv-npm-repo/file.git"
+  },
+  "bugs": {
+    "url": "https://github.com/retrotv-npm-repo/file/issues"
+  },
+  "homepage": "https://github.com/retrotv-npm-repo/file#readme",
+  "files": [
+    "dist"
+  ],
   "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.0.14",
+    "jest": "^30.0.4",
+    "ts-jest": "^29.4.0",
     "typescript": "^5.5.3"
   },
-  "private": true
+  "dependencies": {
+    "magic-bytes.js": "^1.12.1"
+  }
 }
