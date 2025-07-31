@@ -86,20 +86,6 @@ export class File {
         }
     }
 
-    rm(recursive: boolean = false): boolean {
-        try {
-            if (this.isDirectory()) {
-                fs.rmSync(this.path, { recursive: recursive });
-            } else if (this.isFile()) {
-                fs.unlinkSync(this.path);
-            }
-
-            return true;
-        } catch (error) { // NOSONAR typescript:S2486
-            return false;
-        }
-    }
-
     getMimeType(): string {
         try {
             if (!this.isFile()) {
@@ -122,6 +108,33 @@ export class File {
             return "application/octet-stream";
         } catch (error) { // NOSONAR typescript:S2486
             return "";
+        }
+    }
+
+    mkdir(recursive: boolean = false): boolean {
+        try {
+            if (this.isExists()) {
+                return false;
+            }
+            fs.mkdirSync(this.path, { recursive });
+
+            return true;
+        } catch (error) { // NOSONAR typescript:S2486
+            return false;
+        }
+    }
+
+    rm(recursive: boolean = false): boolean {
+        try {
+            if (this.isDirectory()) {
+                fs.rmSync(this.path, { recursive: recursive });
+            } else if (this.isFile()) {
+                fs.unlinkSync(this.path);
+            }
+
+            return true;
+        } catch (error) { // NOSONAR typescript:S2486
+            return false;
         }
     }
 
