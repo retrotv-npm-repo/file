@@ -1,4 +1,4 @@
-# RetroTV Utils
+# File
 
 JavaScript/TypeScript용 범용 유틸리티 라이브러리입니다.
 
