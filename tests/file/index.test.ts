@@ -5,6 +5,7 @@ import fs from "fs";
 const filePath = path.join(__dirname, '..', 'resources', 'file');
 const directoryPath = path.join(__dirname, '..', 'resources', 'directory');
 const nonExistentPath = path.join(__dirname, '..', 'resources', 'nonexistent');
+const mkdirPath = path.join(__dirname, '..', 'resources', 'newdirectory');
 
 describe('File', () => {
     describe('isFile and isDirectory methods', () => {
@@ -167,6 +168,24 @@ describe('File', () => {
             const hash = nonExistent.getHash('md5');
 
             expect(hash).toBe('');
+        });
+    });
+
+    describe("mkdir and rm method", () => {
+        it("create directory and remove test", () => {
+            const directory = new File(mkdirPath);
+            let result = directory.mkdir(true);
+
+            expect(result).toBe(true);
+            expect(fs.existsSync(mkdirPath)).toBe(true);
+            
+            result = directory.mkdir(true);
+            expect(result).toBe(false);
+            expect(fs.existsSync(mkdirPath)).toBe(true);
+
+            result = directory.rm(true);
+            expect(result).toBe(true);
+            expect(fs.existsSync(mkdirPath)).toBe(false);
         });
     });
 });
