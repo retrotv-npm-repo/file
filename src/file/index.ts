@@ -1,4 +1,4 @@
-import * as fs from 'fs';
+import * as fs from 'node:fs';
 import { filetypeinfo } from 'magic-bytes.js';
 
 export class File {
@@ -47,7 +47,7 @@ export class File {
 
     getName(removeExtension?: boolean): string {
         const parts = this.path.split('/');
-        const fileName = parts[parts.length - 1];
+        const fileName = parts.at(-1) ?? '';
 
         if (removeExtension) {
             const dotIndex = fileName.indexOf('.');
@@ -75,7 +75,7 @@ export class File {
                 return "";
             }
 
-            const crypto = require('crypto');
+            const crypto = require('node:crypto');
             const hash = crypto.createHash(algorithm);
             const fileBuffer = fs.readFileSync(this.path);
             hash.update(fileBuffer);
